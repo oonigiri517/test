@@ -1,0 +1,54 @@
+﻿<html>
+<body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+$(function(){
+
+function formSetLastDay(year,month){
+  var lastday=new Array('', 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+    if((year % 4===0 && year % 100 !==0) || year % 400===0){
+      lastday[2] =29;
+  }
+  return lastday[month];
+}
+$('.changeYear, .changeMonth').change(function(){
+    var lastday=formSetLastDay($('.changeYear').val(),$('.changeMonth').val());
+    $('.day option').remove();
+    for(var i=1; i<=lastday; i++){
+    $('.day').append($('<option>').html(String(i)).val(String(i)));
+    }
+  });
+});
+
+</script>
+<select name="year" class="changeYear">
+<option value="2012">2012</option>
+<option value="2013">2013</option>
+<option value="2014">2014</option>
+<option value="2015">2015</option>
+<option value="2016">2016</option>
+<option value="2017">2017</option>
+<option value="2018">2018</option>
+<option value="2019">2019</option>
+</select>年
+<select name="month" class="changeMonth">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+</select>月
+<select name="day" class="day">
+</select>日
+
+<p></p>
+</body>
+</html>
